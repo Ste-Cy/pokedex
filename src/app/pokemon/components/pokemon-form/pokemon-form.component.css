@@ -1,0 +1,11 @@
+/* class fourni par ngModel */
+
+/* éléments avec l'attribut required qui sont valides */
+.ng-valid[required] {
+  border-left: 5px solid #42a948;
+}
+
+/* éléments invalides (sauf form) */
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+}

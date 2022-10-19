@@ -1,0 +1,54 @@
+<!-- On  affiche le détail du Pokemon que si il existe-->
+<div *ngIf="pokemon" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ pokemon.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="pokemon.picture">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td><strong>{{ pokemon.name }}</strong></td>
+              </tr>
+              <tr>
+                <td>Points de vie</td>
+                <td><strong>{{ pokemon.hp }}</strong></td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td><strong>{{ pokemon.cp }}</strong></td>
+              </tr>
+              <tr>
+                <td>Types</td>
+                <td>
+                  <!-- BorderCardDirective : affiche une bordure lors du survol de la carte -->
+                  <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">{{ type }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Date de création</td>
+                <td><em>{{ pokemon.created | date:"dd/MM/yyyy" }}</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <!--Retour vers la page d'accueil-->
+          <a [ngStyle]="{cursor:'pointer'}" (click)="goBack()">Retour</a>
+          <!--page d'édition d'un pokemon-->
+          <a [ngStyle]="{cursor:'pointer'}" (click)="goToEdit(pokemon)">Éditer</a>
+          <!--suppression d'un pokemon-->
+          <a [ngStyle]="{cursor:'pointer'}" (click)="deletePokemon(pokemon)">Supprimer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- icone de chargement-->
+<h4 class="center" *ngIf="!pokemon">
+  <app-loader></app-loader>
+</h4>
